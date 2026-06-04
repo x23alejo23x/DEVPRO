@@ -1,0 +1,32 @@
+export const testimonials = [
+  {
+    id: 1,
+    name: "Carlos Ruiz",
+    company: "Empresa Logística S.A.",
+    role: "Gerente de Operaciones",
+    initials: "CR",
+    color: "#2563EB",
+    text: "Transformó por completo nuestro proceso de inventario. En 2 meses teníamos un sistema que antes nos tomaba semanas en Excel. Comunicación directa y entrega puntual.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Laura Méndez",
+    company: "StartApp Colombia",
+    role: "CEO & Co-Founder",
+    initials: "LM",
+    color: "#4F46E5",
+    text: "La API que construyó para nuestra app móvil superó nuestras expectativas. Documentación impecable, código limpio y soporte postventa excelente.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Andrés Vargas",
+    company: "Clínica MediPlus",
+    role: "Director de Tecnología",
+    initials: "AV",
+    color: "#0EA5E9",
+    text: "El dashboard administrativo que desarrolló nos permite tomar decisiones con datos reales en tiempo real. Totalmente recomendado para proyectos de alto impacto.",
+    rating: 5,
+  },
+];
