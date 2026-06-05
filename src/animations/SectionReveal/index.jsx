@@ -1,10 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-/**
- * SectionReveal — anima el CONTENIDO interior, no el section completo.
- * El fondo del section queda siempre a tamaño completo (sin líneas de corte).
- */
 export default function SectionReveal({ children, className = "" }) {
   const ref = useRef(null);
 
@@ -13,7 +9,7 @@ export default function SectionReveal({ children, className = "" }) {
     offset: ["start 1", "start 0.15"],
   });
 
-  const smooth = useSpring(scrollYProgress, { stiffness: 40, damping: 15, restDelta: 0.001 });
+  const smooth = useSpring(scrollYProgress, { stiffness: 45, damping: 18, restDelta: 0.001 });
 
   const scale   = useTransform(smooth, [0, 1], [0.84, 1]);
   const opacity = useTransform(smooth, [0, 0.3], [0, 1]);

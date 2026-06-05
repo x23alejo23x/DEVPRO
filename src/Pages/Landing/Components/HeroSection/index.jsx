@@ -5,7 +5,7 @@ import ButtonOutline from "../../../../Components/UI/ButtonOutline";
 import SplitText from "../../../../animations/SplitText";
 import RotatingText from "../../../../animations/RotatingText";
 import AuroraBackground from "../../../../animations/AuroraBackground";
-import LaptopMockup from "../../../../Components/LaptopMockup";
+import DeviceShowcase from "../../../../Components/DeviceShowcase";
 
 export default function HeroSection() {
   return (
@@ -130,7 +130,7 @@ export default function HeroSection() {
             }}
             className="hidden lg:flex"
           >
-            <LaptopMockup />
+            <DeviceShowcase />
           </motion.div>
         </div>
       </div>
