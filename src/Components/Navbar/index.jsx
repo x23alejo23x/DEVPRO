@@ -7,7 +7,6 @@ import ButtonPrimary from "../UI/ButtonPrimary";
 const navLinks = [
   { label: "Servicios",   href: "#servicios" },
   { label: "Proceso",     href: "#proceso" },
-  { label: "Tecnologías", href: "#tecnologias" },
   { label: "Proyectos",   href: "#proyectos" },
   { label: "Contacto",    href: "#contacto" },
 ];

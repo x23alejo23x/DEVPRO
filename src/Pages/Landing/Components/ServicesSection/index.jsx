@@ -579,10 +579,86 @@ function ScrollLine() {
   );
 }
 
+/* ─── Sidebar de navegación lateral fija ─── */
+function ServicesSidebarNav({ activeIndex, visible }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: visible ? 1 : 0, x: visible ? 0 : -16 }}
+      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      className="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 pointer-events-auto"
+      style={{ pointerEvents: visible ? "auto" : "none" }}
+    >
+      {services.map((s, i) => {
+        const isActive = activeIndex === i;
+        return (
+          <button
+            key={s.id}
+            onClick={() =>
+              document
+                .getElementById(`servicio-${i}`)
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="flex items-center gap-2.5 group"
+            style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+          >
+            {/* Dot */}
+            <motion.div
+              animate={{
+                width: isActive ? 28 : 6,
+                background: isActive ? "#F97316" : "rgba(255,255,255,0.2)",
+              }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              style={{ height: 6, borderRadius: 99, flexShrink: 0 }}
+            />
+            {/* Label */}
+            <motion.span
+              animate={{ color: isActive ? "#F97316" : "rgba(255,255,255,0.35)" }}
+              transition={{ duration: 0.25 }}
+              className="text-[11px] font-semibold whitespace-nowrap select-none"
+              style={{ pointerEvents: "none" }}
+            >
+              {s.title.split(" ")[0]}
+            </motion.span>
+          </button>
+        );
+      })}
+    </motion.div>
+  );
+}
+
 /* ─── Sección completa ─── */
 export default function ServicesSection() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    const visible = new Set();
+    const observers = services.map((_, i) => {
+      const el = document.getElementById(`servicio-${i}`);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            visible.add(i);
+            setActiveIndex(i);
+          } else {
+            visible.delete(i);
+            if (visible.size === 0) setActiveIndex(null);
+          }
+        },
+        { threshold: 0.5 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+
+  const sidebarVisible = activeIndex !== null;
+
   return (
     <>
+      <ServicesSidebarNav activeIndex={activeIndex} visible={sidebarVisible} />
       {/* Header propio — una sola pantalla */}
       <div
         id="servicios"
